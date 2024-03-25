@@ -43,10 +43,10 @@ resource "aws_ecs_service" "ecs_app_service" {
 
   network_configuration {
     subnets = [
-      "${var.public_subnet_az1_id}",
-      "${var.public_subnet_az2_id}"
+      var.public_subnet_az1_id,
+      var.public_subnet_az2_id
     ]
     assign_public_ip = true
-    security_groups  = ["${var.ecs_security_group_id}"]
+    security_groups  = [var.ecs_security_group_id]
   }
 }

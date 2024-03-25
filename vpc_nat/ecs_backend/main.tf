@@ -41,8 +41,8 @@ module "security_groups" {
 }
 
 module "acm" {
-  source = "../modules/acm"
-  domain_name = local.domain_name
+  source                   = "../modules/acm"
+  domain_name              = local.domain_name
   subject_alternative_name = local.subject_alternative_name
 }
 
@@ -54,15 +54,17 @@ module "ecr_repo" {
 // TODO: Understand ECS and ECS Task Execution Role
 // ECS Cluster and ECS Task Execution Role Policy for IAM
 module "ecs_app_cluster" {
-  source       = "../modules/ecs"
+  source = "../modules/ecs"
 
   ecs_cluster_name = local.ecs_cluster_name
-  project_name = module.vpc.project_name
-  vpc_id = module.vpc.vpc_id
+  project_name     = module.vpc.project_name
+  vpc_id           = module.vpc.vpc_id
+
+  ssl_certificate_arn = module.acm.acm_certificate_arn
 
   ecs_app_task_family = local.ecs_app_task_family
   ecs_app_task_name   = local.ecs_app_task_name
-  container_port = local.container_port
+  container_port      = local.container_port
 
   ecr_repo_url = module.ecr_repo.repository_url
 

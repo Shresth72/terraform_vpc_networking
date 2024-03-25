@@ -8,9 +8,21 @@ output "ecs_cluster_id" {
 }
 
 output "ecs_task_definition_arn" {
-  value = aws_ecs_task_definition.ecs_task_definition.arn
+  value = aws_ecs_task_definition.ecs_app_task.arn
 }
 
 output "ecs_service_id" {
   value = aws_ecs_service.ecs_app_service.id
+}
+
+output "alb_target_group_arn" {
+  value = aws_alb_target_group.alb_target_group.arn
+}
+
+output "alb_dns_name" {
+  value = aws_alb.application_load_balancer.dns_name
+}
+
+output "application_load_balancer_zone_id" {
+  value = aws_alb.application_load_balancer.zone_id
 }
