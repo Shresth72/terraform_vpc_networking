@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Retrieve authentication token for Amazon ECR and authenticate your Docker client to your registry.
 aws ecr git-login-password --region us-west-2 --profile tf-dev \
 | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-west-2.amazonaws.com

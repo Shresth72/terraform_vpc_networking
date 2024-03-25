@@ -1,3 +1,5 @@
+#!/bin/bash
+
 aws configure
 
 # List all users
