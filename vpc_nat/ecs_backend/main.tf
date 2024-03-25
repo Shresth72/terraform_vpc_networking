@@ -40,6 +40,12 @@ module "security_groups" {
   vpc_id = module.vpc.vpc_id
 }
 
+module "acm" {
+  source = "../modules/acm"
+  domain_name = local.domain_name
+  subject_alternative_name = local.subject_alternative_name
+}
+
 module "ecr_repo" {
   source        = "../modules/ecr"
   ecr_repo_name = local.ecr_repo_name
