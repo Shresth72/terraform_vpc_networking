@@ -46,7 +46,7 @@ module "ecr_repo" {
 }
 
 // TODO: Understand ECS and ECS Task Execution Role
-// Create ECS Cluster and Set ECS Task Execution Role Policy to IAM
+// ECS Cluster and ECS Task Execution Role Policy for IAM
 module "ecs_app_cluster" {
   source       = "../modules/ecs"
 

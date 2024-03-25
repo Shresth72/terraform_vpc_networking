@@ -2,11 +2,11 @@ terraform {
   required_version = "~> 1.3"
 
   backend "s3" {
-    bucket         = locals.bucket_name
+    bucket         = "myproject-tf-state-bucket"
     key            = "tf-infra/terraform.tfstate"
     region         = "us-west-2"
     profile        = "default"
-    dynamodb_table = locals.table_name
+    dynamodb_table = "myproject-tf-state-lock-table"
     encrypt        = true
   }
 
