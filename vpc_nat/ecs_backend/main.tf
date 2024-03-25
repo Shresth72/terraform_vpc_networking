@@ -47,3 +47,22 @@ module "ecr_repo" {
 
 // TODO: Understand ECS and ECS Task Execution Role
 // Create ECS Cluster and Set ECS Task Execution Role Policy to IAM
+module "ecs_app_cluster" {
+  source       = "../modules/ecs"
+
+  ecs_cluster_name = local.ecs_cluster_name
+  project_name = module.vpc.project_name
+  vpc_id = module.vpc.vpc_id
+
+  ecs_app_task_family = local.ecs_app_task_family
+  ecs_app_task_name   = local.ecs_app_task_name
+  container_port = local.container_port
+
+  ecr_repo_url = module.ecr_repo.repository_url
+
+  public_subnet_az1_id = module.vpc.public_subnet_az1_id
+  public_subnet_az2_id = module.vpc.public_subnet_az2_id
+
+  alb_security_group_id = module.security_groups.alb_security_group_id
+  ecs_security_group_id = module.security_groups.ecs_security_group_id
+}
