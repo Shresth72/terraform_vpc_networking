@@ -15,4 +15,7 @@ locals {
   # ACM Locals 
   domain_name              = "myproject.com"
   subject_alternative_name = "*.myproject.com"
+
+  # EC2 Locals
+  aws_key_name = "mykeypair"
 }

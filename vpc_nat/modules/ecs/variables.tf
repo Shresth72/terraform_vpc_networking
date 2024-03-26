@@ -2,6 +2,7 @@ variable "vpc_id" {}
 
 variable "project_name" {}
 variable "ecs_cluster_name" {}
+variable "region" {}
 
 variable "ecs_app_task_family" {}
 variable "ecs_app_task_name" {}

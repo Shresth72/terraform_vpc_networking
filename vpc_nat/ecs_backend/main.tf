@@ -3,8 +3,6 @@ provider "aws" {
   profile = "default"
 }
 
-// TODO: Setup EC2 and more configurations for ECS
-
 # Store state on S3 with SSE enabled
 module "tf-state" {
   source      = "../modules/tf-state"
@@ -60,6 +58,7 @@ module "ecs_app_cluster" {
   ecs_cluster_name = local.ecs_cluster_name
   project_name     = module.vpc.project_name
   vpc_id           = module.vpc.vpc_id
+  region           = module.vpc.region
 
   ssl_certificate_arn = module.acm.acm_certificate_arn
 
@@ -75,3 +74,26 @@ module "ecs_app_cluster" {
   alb_security_group_id = module.security_groups.alb_security_group_id
   ecs_security_group_id = module.security_groups.ecs_security_group_id
 }
+
+// AWS can automatically create EC2 instances in the ECS cluster and
+// scale them based on load. But for this need to define:
+// - Launch Template
+// - Auto Scaling Group
+// - Capacity Provider to connect ECS Cluster with ASG
+
+// Currently not setting up this module 
+// (Not sure if this works with Fargate)
+# module "ec2" {
+#   source = "../modules/ec2"
+
+#   ecs_cluster_name = local.ecs_cluster_name
+#   instance_type    = var.instance_type
+#   aws_key_name     = local.aws_key_name
+#   vpc_id           = module.vpc.vpc_id
+
+#   aws_iam_instance_profile_name = module.ecs_app_cluster.aws_iam_instance_profile_name
+#   ecs_security_group_id         = module.security_groups.ecs_security_group_id
+
+#   public_subnet_az1_id = module.vpc.public_subnet_az1_id
+#   public_subnet_az2_id = module.vpc.public_subnet_az2_id
+# }
