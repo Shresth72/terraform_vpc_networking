@@ -3,6 +3,8 @@ provider "aws" {
   profile = "default"
 }
 
+// TODO: Setup EC2 and more configurations for ECS
+
 # Store state on S3 with SSE enabled
 module "tf-state" {
   source      = "../modules/tf-state"
@@ -51,7 +53,6 @@ module "ecr_repo" {
   ecr_repo_name = local.ecr_repo_name
 }
 
-// TODO: Understand ECS and ECS Task Execution Role
 // ECS Cluster and ECS Task Execution Role Policy for IAM
 module "ecs_app_cluster" {
   source = "../modules/ecs"
