@@ -31,10 +31,10 @@ There are three main components:
 
 ![alt text](./vpc_nat/images/ecr.png)
 
-![alt text](./vpc_nat/images/ecs1.png.png)
+![alt text](./vpc_nat/images/ecs1.png)
 
-![alt text](./vpc_nat/images/ecs2.png.png)
+![alt text](./vpc_nat/images/ecs2.png)
 
-![alt text](./vpc_nat/images/add_container.png.png)
+![alt text](./vpc_nat/images/add_container.png)
 
 ![alt text](./vpc_nat/images/task_def.png)
