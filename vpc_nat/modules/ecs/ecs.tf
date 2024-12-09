@@ -43,7 +43,7 @@ resource "aws_ecs_service" "ecs_app_service" {
   desired_count   = 1
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.alb_target_group.arn
+    target_group_arn = aws_alb_target_group.alb_target_group.arn
     container_name   = aws_ecs_task_definition.ecs_app_task.family
     container_port   = var.container_port
   }
